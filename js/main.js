@@ -22,7 +22,7 @@ const closeBtn = document.querySelector(".close-btn");
 const resultContainer = document.querySelector(".result-container");
 const resultText = document.querySelector(".result-text");
 
-
+//Initializing the program values with 0
 playerOptions.value = '';
 
 let scorePlayer = 0;
@@ -33,6 +33,7 @@ userScoreSection.textContent = scorePlayer;
 computerScoreSection.textContent = scoreComputer;
 roundsSection.textContent = roundsPlayed;
 
+//Function to return everything to its default state
 function returnToDefault() {
     playerOptions.value = '';
 
@@ -55,6 +56,8 @@ function returnToDefault() {
     roundsSection.textContent = roundsPlayed;
 }
 
+
+//Function where the computer choces a hand and its displayed in the screen
 function computerPlay(){
     let value = Math.floor(Math.random() * 3);
     let computerSelection = options[value];
@@ -85,7 +88,7 @@ function computerPlay(){
     return computerSelection;
 }
 
-
+//Function where both the values of the user and the computer and compared and gives value depending of the result
 function playRound(playerSelection, computerSelection){
     if(playerSelection == computerSelection){
         console.log("Its a Draw");
@@ -103,42 +106,9 @@ function playRound(playerSelection, computerSelection){
 
 }
 
+/*******  Event Listeners  ************/
 
-/*
-function game(){
-    let scorePlayer = 0, scoreComputer = 0, round = 1;
-
-    for(let i = 0; i < 5; i++){
-        const computerSelection = computerPlay();
-        const playerSelection = "rock";
-        console.log("Round: "+round);
-        let roundResult =  playRound(playerSelection, computerSelection);
-
-        if(roundResult == 1){
-            scorePlayer++;
-        }
-        if(roundResult == -1){
-            scoreComputer++
-        }
-
-        round++
-    }
-    
-
-    if(scorePlayer > scoreComputer){
-        console.log("You have WON the game!");
-    }
-    else if(scorePlayer < scoreComputer){
-        console.log("The Computer Wins!")
-    }
-    else{
-        console.log("It's a Draw!")
-    }
-    console.log("Player: "+scorePlayer+" | Computer: "+scoreComputer);
-}
-*/
-
-
+//listener which updates the select menu everytime it is changed
 playerOptions.addEventListener('change', () => {
     let userInput = playerOptions.value;
 
@@ -170,6 +140,7 @@ playerOptions.addEventListener('change', () => {
 
 });
 
+//submit event listener that runs the previous play functions, updates the score values, the round values and shows a pop up with a message
 form.addEventListener('submit', (e) =>{
     e.preventDefault();
     let userInput = playerOptions.value;
@@ -206,10 +177,86 @@ form.addEventListener('submit', (e) =>{
     
 });
 
+//Listener that call the default function
 restartBtn.addEventListener('click', () =>{
     returnToDefault();
 });
 
+//Listener to close the pop up message
 closeBtn.addEventListener('click', () =>{
     resultContainer.classList.add("hidden");
 });
+
+
+/****** Simple version playable within the console*******/
+
+/*
+function computerPlay(){
+    let value = Math.floor(Math.random() * 3);
+    let computerSelection = options[value];
+
+    return computerSelection;
+}
+
+
+function playRound(playerSelection, computerSelection){
+    if(playerSelection == computerSelection){
+        console.log("Its a Draw");
+        return 0;
+    }
+    else if((playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "scissors" && computerSelection == "paper") ){
+        console.log("You Win! " + playerSelection + " beats " + computerSelection);
+        return 1;
+    }
+    else{
+        console.log("You Loose! " + computerSelection + " beats " + playerSelection);
+        return -1; 
+    }
+
+}
+
+function game(){
+    let scorePlayer = 0, scoreComputer = 0, round = 1;
+
+    while(round < 6){
+        const computerSelection = computerPlay();
+        var userInput = prompt("What will you choose?");
+        if(userInput == null || userInput == ""){
+            alert("Please input a value");
+        }
+        else{
+            var playerSelection = userInput.toLowerCase();
+            if(playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors"){
+                console.log("Round: "+round);
+                let roundResult =  playRound(playerSelection, computerSelection);
+
+                if(roundResult == 1){
+                    scorePlayer++;
+                }
+                if(roundResult == -1){
+                    scoreComputer++
+                }
+
+                round++;
+            }
+            else{
+                console.log("Wrong input");
+            } 
+        }
+    }
+
+
+    if(scorePlayer > scoreComputer){
+        console.log("You have WON the game!");
+    }
+    else if(scorePlayer < scoreComputer){
+        console.log("The Computer Wins!")
+    }
+    else{
+        console.log("It's a Draw!")
+    }
+    console.log("Player: "+scorePlayer+" | Computer: "+scoreComputer);
+}
+
+game();
+*/
