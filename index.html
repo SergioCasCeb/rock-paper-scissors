@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissors</title>
+
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <header></header>
+    <main>
+        <div class="container">
+            <h1>Rock-Paper-Scissors</h1>
+
+            <form class="game-container">
+                <div class="rounds-container">
+                    <p>Round: <span class="rounds"></span></p>
+
+                    <button type="button" class="restart-btn btn">Restart</button>
+                </div>
+                <div class="player-container">
+                    <h2>Player</h2>
+
+                    <select name="player-options" id="" class="player-options" required>
+                        <option value="" selected disabled>Pick your hand...</option>
+                        <option value="rock">Rock</option>
+                        <option value="paper">Paper</option>
+                        <option value="scissors">Scissors</option>
+                    </select>
+
+                    <div class="option-container">
+                        <p class="waiting-text">Choose Wisely!</p>
+                        <div class="rock-user icons hidden"><i class="fas fa-hand-rock"></i></div>
+                        <div class="paper-user icons hidden"><i class="fas fa-hand-paper"></i></div>
+                        <div class="scissors-user icons hidden"><i class="fas fa-hand-scissors"></i></div>
+                    </div>
+
+                    <div class="score">
+                        <p>Score: <span class="user-score"></span></p>
+                    </div>
+                </div>
+
+                <div class="play-btn-container">
+                    <button type="submit" class="play-btn btn">Fight</button>
+                </div>
+
+                <div class="computer-container">
+                    <h2>Computer</h2>
+
+                    <div class="computer-options">
+                        <div class="loader-wrapper">
+                            <div class="loader"></div>
+                            <p class="loader-text">Waiting for player ...</p>
+                        </div>
+
+                        <div class="rock-pc icons hidden"><i class="fas fa-hand-rock"></i></div>
+                        <div class="paper-pc icons hidden"><i class="fas fa-hand-paper"></i></div>
+                        <div class="scissors-pc icons hidden"><i class="fas fa-hand-scissors"></i></div>
+                    </div>
+                    
+
+                    <div class="score">
+                        <p>Score: <span class="computer-score"></span></p>
+                    </div>
+                </div>
+
+                <div class="result-container hidden">
+                    <div class="result-msg">
+                        <h2 class="result-text"></h2>
+                        <button type="button" class="close-btn btn">Next Round</button>
+                    </div>
+                </div>
+                
+            </form>
+
+        </div>
+    </main>
+    <footer></footer>
+
+
+    <script src="https://kit.fontawesome.com/d66d421276.js" crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
