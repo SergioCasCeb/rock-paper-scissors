@@ -35,7 +35,7 @@ roundsSection.textContent = roundsPlayed;
 
 function returnToDefault() {
     playerOptions.value = '';
-    
+
     loader.classList.remove("hidden");
     rockPc.classList.add('hidden');
     paperPc.classList.add('hidden');
@@ -46,9 +46,13 @@ function returnToDefault() {
     scissorsUser.classList.add('hidden');
     waitingText.classList.remove('hidden');
 
-    userScoreSection.textContent = 0;
-    computerScoreSection.textContent = 0;
-    roundsSection.textContent = 0;
+    scorePlayer = 0;
+    scoreComputer = 0;
+    roundsPlayed = 0;
+
+    userScoreSection.textContent = scorePlayer;
+    computerScoreSection.textContent = scoreComputer;
+    roundsSection.textContent = roundsPlayed;
 }
 
 function computerPlay(){
