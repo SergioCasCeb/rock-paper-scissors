@@ -34,6 +34,8 @@ computerScoreSection.textContent = scoreComputer;
 roundsSection.textContent = roundsPlayed;
 
 function returnToDefault() {
+    playerOptions.value = '';
+    
     loader.classList.remove("hidden");
     rockPc.classList.add('hidden');
     paperPc.classList.add('hidden');
