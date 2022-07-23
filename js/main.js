@@ -89,16 +89,12 @@ function computerPlay(){
 //Function where both the values of the user and the computer and compared and gives value depending of the result
 function playRound(playerSelection, computerSelection){
     if(playerSelection == computerSelection){
-        console.log("Its a Draw");
         return 0;
     }
     else if((playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "scissors" && computerSelection == "paper") ){
-
-        console.log("You Win! " + playerSelection + " beats " + computerSelection);
         return 1;
     }
     else{
-        console.log("You Loose! " + computerSelection + " beats " + playerSelection);
         return -1; 
     }
 
@@ -138,10 +134,8 @@ playerOptions.forEach( option => {
 //submit event listener that runs the previous play functions, updates the score values, the round values and shows a pop up with a message
 form.addEventListener('submit', (e) =>{
     e.preventDefault();
-    console.log(userInput);
     let roundResult = playRound(userInput, computerPlay());
 
-    
     if(roundResult == 1){
         scorePlayer++;
         userScoreSection.textContent = scorePlayer;
