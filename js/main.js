@@ -163,6 +163,29 @@ form.addEventListener('submit', (e) =>{
     roundsSection.textContent = roundsPlayed;
 
     setTimeout(function(){ resultContainer.classList.remove("hidden"); }, 500);
+
+
+    if (scorePlayer == 5) {
+        resultText.textContent = "You have WON the game";
+        resultText.classList.add("won");
+        resultText.classList.remove("lost");
+        resultText.classList.remove("draw");
+        setTimeout(function(){ 
+            resultContainer.classList.remove("hidden"); 
+            returnToDefault();
+        }, 1000);
+        
+    }
+    if(scoreComputer == 5){
+        resultText.textContent = "You have LOST the game";
+        resultText.classList.remove("won");
+        resultText.classList.add("lost");
+        resultText.classList.remove("draw");
+        setTimeout(function(){ 
+            resultContainer.classList.remove("hidden"); 
+            returnToDefault();
+        }, 1000);
+    }
     
 });
 
