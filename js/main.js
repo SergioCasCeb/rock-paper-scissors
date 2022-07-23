@@ -1,5 +1,5 @@
 const options = ["rock", "paper", "scissors"];
-const playerOptions = document.querySelector(".player-options");
+const playerOptions = document.querySelectorAll(".player-options button");
 const rockUser = document.querySelector(".rock-user");
 const paperUser = document.querySelector(".paper-user");
 const scissorsUser = document.querySelector(".scissors-user");
@@ -22,12 +22,13 @@ const closeBtn = document.querySelector(".close-btn");
 const resultContainer = document.querySelector(".result-container");
 const resultText = document.querySelector(".result-text");
 
+
 //Initializing the program values with 0
-playerOptions.value = '';
 
 let scorePlayer = 0;
 let scoreComputer = 0;
 let roundsPlayed = 0;
+let userInput = '';
 
 userScoreSection.textContent = scorePlayer;
 computerScoreSection.textContent = scoreComputer;
@@ -35,7 +36,6 @@ roundsSection.textContent = roundsPlayed;
 
 //Function to return everything to its default state
 function returnToDefault() {
-    playerOptions.value = '';
 
     loader.classList.remove("hidden");
     rockPc.classList.add('hidden');
@@ -56,14 +56,12 @@ function returnToDefault() {
     roundsSection.textContent = roundsPlayed;
 }
 
-
 //Function where the computer choces a hand and its displayed in the screen
 function computerPlay(){
     let value = Math.floor(Math.random() * 3);
     let computerSelection = options[value];
 
     loader.classList.add("hidden");
-
     
     if(computerSelection == 'rock'){
         rockPc.classList.remove('hidden');
@@ -108,42 +106,39 @@ function playRound(playerSelection, computerSelection){
 
 /*******  Event Listeners  ************/
 
-//listener which updates the select menu everytime it is changed
-playerOptions.addEventListener('change', () => {
-    let userInput = playerOptions.value;
 
-    if(userInput == 'rock'){
-        rockUser.classList.remove('hidden');
-        paperUser.classList.add('hidden');
-        scissorsUser.classList.add('hidden');
-        waitingText.classList.add('hidden');
-    }
-    else if(userInput == 'paper'){
-        rockUser.classList.add('hidden');
-        paperUser.classList.remove('hidden');
-        scissorsUser.classList.add('hidden');
-        waitingText.classList.add('hidden');
-    }
-    else if(userInput == 'scissors'){
-        rockUser.classList.add('hidden');
-        paperUser.classList.add('hidden');
-        scissorsUser.classList.remove('hidden');
-        waitingText.classList.add('hidden');
-    }
-    else{
-        rockUser.classList.add('hidden');
-        paperUser.classList.add('hidden');
-        scissorsUser.classList.add('hidden');
-        waitingText.classList.remove('hidden');
-    }
-
-
-});
+//listener for the users options
+playerOptions.forEach( option => {
+    option.addEventListener("click", () => {
+        
+        if (option.className == 'rock') {
+            rockUser.classList.remove('hidden');
+            paperUser.classList.add('hidden');
+            scissorsUser.classList.add('hidden');
+            waitingText.classList.add('hidden');
+            userInput = 'rock';
+        }
+        else if(option.className == 'paper'){
+            rockUser.classList.add('hidden');
+            paperUser.classList.remove('hidden');
+            scissorsUser.classList.add('hidden');
+            waitingText.classList.add('hidden');
+            userInput = 'paper';
+        }
+        else{
+            rockUser.classList.add('hidden');
+            paperUser.classList.add('hidden');
+            scissorsUser.classList.remove('hidden');
+            waitingText.classList.add('hidden');
+            userInput = 'scissors';
+        }
+    })
+})
 
 //submit event listener that runs the previous play functions, updates the score values, the round values and shows a pop up with a message
 form.addEventListener('submit', (e) =>{
     e.preventDefault();
-    let userInput = playerOptions.value;
+    console.log(userInput);
     let roundResult = playRound(userInput, computerPlay());
 
     
@@ -186,77 +181,3 @@ restartBtn.addEventListener('click', () =>{
 closeBtn.addEventListener('click', () =>{
     resultContainer.classList.add("hidden");
 });
-
-
-/****** Simple version playable within the console*******/
-
-/*
-function computerPlay(){
-    let value = Math.floor(Math.random() * 3);
-    let computerSelection = options[value];
-
-    return computerSelection;
-}
-
-
-function playRound(playerSelection, computerSelection){
-    if(playerSelection == computerSelection){
-        console.log("Its a Draw");
-        return 0;
-    }
-    else if((playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "scissors" && computerSelection == "paper") ){
-        console.log("You Win! " + playerSelection + " beats " + computerSelection);
-        return 1;
-    }
-    else{
-        console.log("You Loose! " + computerSelection + " beats " + playerSelection);
-        return -1; 
-    }
-
-}
-
-function game(){
-    let scorePlayer = 0, scoreComputer = 0, round = 1;
-
-    while(round < 6){
-        const computerSelection = computerPlay();
-        var userInput = prompt("What will you choose?");
-        if(userInput == null || userInput == ""){
-            alert("Please input a value");
-        }
-        else{
-            var playerSelection = userInput.toLowerCase();
-            if(playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors"){
-                console.log("Round: "+round);
-                let roundResult =  playRound(playerSelection, computerSelection);
-
-                if(roundResult == 1){
-                    scorePlayer++;
-                }
-                if(roundResult == -1){
-                    scoreComputer++
-                }
-
-                round++;
-            }
-            else{
-                console.log("Wrong input");
-            } 
-        }
-    }
-
-
-    if(scorePlayer > scoreComputer){
-        console.log("You have WON the game!");
-    }
-    else if(scorePlayer < scoreComputer){
-        console.log("The Computer Wins!")
-    }
-    else{
-        console.log("It's a Draw!")
-    }
-    console.log("Player: "+scorePlayer+" | Computer: "+scoreComputer);
-}
-
-game();
-*/
