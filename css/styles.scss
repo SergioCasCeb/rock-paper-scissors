@@ -35,7 +35,7 @@ body {
   max-width: 1400px;
   min-height: 100vh;
   width: 90%;
-  margin: 0 auto;
+  margin: 4rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,7 +44,7 @@ body {
 
 h1 {
   font-size: var(--fs-h1);
-  margin: 1rem 0 3rem 0;
+  margin: 0 0 3rem 0;
   color: #FFFFFF;
   span {
     font-size: var(--fs-btn);
@@ -110,7 +110,6 @@ h2 {
   flex-wrap: wrap;
   background-color: var(--clr-light);
   padding: 2rem;
-  margin-bottom: 2rem;
   border-radius: 10px;
   box-shadow: 0 0 1rem rgb(137, 137, 137);
   text-align: center;
