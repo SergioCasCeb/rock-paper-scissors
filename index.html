@@ -16,72 +16,71 @@
     <header></header>
     <main>
         <div class="container">
-            <h1>Rock-Paper-Scissors</h1>
-
-            <form class="game-container">
-                <div class="rounds-container">
-                    <p>Round: <span class="rounds"></span></p>
-
-                    <button type="button" class="restart-btn btn">Restart</button>
+          <h1>Rock-Paper-Scissors <span>(Best of 5)</span></h1>
+      
+          <form class="game-container">
+            <div class="rounds-container">
+              <p>Round: <span class="rounds"></span></p>
+      
+              <button type="button" class="restart-btn btn">Restart</button>
+            </div>
+            <div class="player-container">
+              <div class="options-cotainer">
+                <h2>Player</h2>
+      
+                <div class="player-options">
+                  <button type="button" class="rock"><i class="fas fa-hand-rock"></i></button>
+                  <button type="button" class="paper"><i class="fas fa-hand-paper"></i></button>
+                  <button type="button" class="scissors"><i class="fas fa-hand-scissors"></i></button>
                 </div>
-                <div class="player-container">
-                    <div class="options-cotainer">
-                        <h2>Player</h2>
-
-                        <div class="player-options">
-                            <button type="button" class="rock"><i class="fas fa-hand-rock"></i></button>
-                            <button type="button" class="paper"><i class="fas fa-hand-paper"></i></button>
-                            <button type="button" class="scissors"><i class="fas fa-hand-scissors"></i></button>
-                        </div>
-                    </div>
-
-                    <div class="option-container">
-                        <p class="waiting-text">Choose Wisely!</p>
-                        <div class="rock-user icons hidden"><i class="fas fa-hand-rock"></i></div>
-                        <div class="paper-user icons hidden"><i class="fas fa-hand-paper"></i></div>
-                        <div class="scissors-user icons hidden"><i class="fas fa-hand-scissors"></i></div>
-                    </div>
-
-                    <div class="score">
-                        <p>Score: <span class="user-score"></span></p>
-                    </div>
+              </div>
+      
+              <div class="option-container">
+                <p class="waiting-text">Choose Wisely!</p>
+                <div class="rock-user icons hidden"><i class="fas fa-hand-rock"></i></div>
+                <div class="paper-user icons hidden"><i class="fas fa-hand-paper"></i></div>
+                <div class="scissors-user icons hidden"><i class="fas fa-hand-scissors"></i></div>
+              </div>
+      
+              <div class="score">
+                <p>Score: <span class="user-score"></span></p>
+              </div>
+            </div>
+      
+            <div class="play-btn-container">
+              <button type="submit" class="play-btn btn">Fight</button>
+            </div>
+      
+            <div class="computer-container">
+              <h2>Computer</h2>
+      
+              <div class="computer-options">
+                <div class="loader-wrapper">
+                  <div class="loader"></div>
+                  <p class="loader-text">Waiting for player ...</p>
                 </div>
-
-                <div class="play-btn-container">
-                    <button type="submit" class="play-btn btn">Fight</button>
-                </div>
-
-                <div class="computer-container">
-                    <h2>Computer</h2>
-
-                    <div class="computer-options">
-                        <div class="loader-wrapper">
-                            <div class="loader"></div>
-                            <p class="loader-text">Waiting for player ...</p>
-                        </div>
-
-                        <div class="rock-pc icons hidden"><i class="fas fa-hand-rock"></i></div>
-                        <div class="paper-pc icons hidden"><i class="fas fa-hand-paper"></i></div>
-                        <div class="scissors-pc icons hidden"><i class="fas fa-hand-scissors"></i></div>
-                    </div>
-                    
-
-                    <div class="score">
-                        <p>Score: <span class="computer-score"></span></p>
-                    </div>
-                </div>
-
-                <div class="result-container hidden">
-                    <div class="result-msg">
-                        <h2 class="result-text"></h2>
-                        <button type="button" class="close-btn btn">Next Round</button>
-                    </div>
-                </div>
-                
-            </form>
-
+      
+                <div class="rock-pc icons hidden"><i class="fas fa-hand-rock"></i></div>
+                <div class="paper-pc icons hidden"><i class="fas fa-hand-paper"></i></div>
+                <div class="scissors-pc icons hidden"><i class="fas fa-hand-scissors"></i></div>
+              </div>
+      
+              <div class="score">
+                <p>Score: <span class="computer-score"></span></p>
+              </div>
+            </div>
+      
+            <div class="result-container hidden">
+              <div class="result-msg">
+                <h2 class="result-text"></h2>
+                <button type="button" class="close-btn btn"></button>
+              </div>
+            </div>
+      
+          </form>
+      
         </div>
-    </main>
+      </main>
     <footer></footer>
 
 

@@ -34,7 +34,7 @@ body {
   max-width: 1400px;
   min-height: 100vh;
   width: 90%;
-  margin: 0 auto;
+  margin: 4rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,8 +43,11 @@ body {
 
 h1 {
   font-size: var(--fs-h1);
-  margin: 1rem 0 3rem 0;
+  margin: 0 0 3rem 0;
   color: #FFFFFF;
+}
+h1 span {
+  font-size: var(--fs-btn);
 }
 
 h2 {
@@ -54,14 +57,14 @@ h2 {
 .btn {
   padding: 0.25em 1em;
   font-size: var(--fs-btn);
-  font-weight: bold;
+  font-family: "Electrolize", sans-serif;
   border: none;
   background-color: transparent;
   color: #898989;
-  border: 2px solid #898989;
+  border: 1px solid #898989;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 300ms ease-in-out;
+  transition: all 250ms ease-in-out;
 }
 .btn:hover {
   background-color: #898989;
@@ -101,7 +104,6 @@ h2 {
   flex-wrap: wrap;
   background-color: var(--clr-light);
   padding: 2rem;
-  margin-bottom: 2rem;
   border-radius: 10px;
   box-shadow: 0 0 1rem rgb(137, 137, 137);
   text-align: center;
@@ -142,18 +144,29 @@ h2 {
   width: 100%;
 }
 .player-container .options-cotainer .player-options {
-  width: 70%;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  gap: 2rem;
 }
 .player-container .options-cotainer .player-options button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 1px solid #898989;
+  border-radius: 5px;
   font-size: 3.5rem;
   width: 6.5rem;
   height: 6.5rem;
   padding: 1rem;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+}
+.player-container .options-cotainer .player-options button:hover {
+  background-color: #898989;
 }
 
 .play-btn-container {
@@ -226,6 +239,7 @@ h2 {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 2rem;
 }
 .result-container .result-msg h2 {
   width: 100%;
