@@ -22,13 +22,12 @@ const closeBtn = document.querySelector(".close-btn");
 const resultContainer = document.querySelector(".result-container");
 const resultText = document.querySelector(".result-text");
 
-
 //Initializing the program values with 0
 
 let scorePlayer = 0;
 let scoreComputer = 0;
 let roundsPlayed = 0;
-let userInput = '';
+let userInput = "";
 
 userScoreSection.textContent = scorePlayer;
 computerScoreSection.textContent = scoreComputer;
@@ -36,165 +35,160 @@ roundsSection.textContent = roundsPlayed;
 
 //Function to return everything to its default state
 function returnToDefault() {
+  loader.classList.remove("hidden");
+  rockPc.classList.add("hidden");
+  paperPc.classList.add("hidden");
+  scissorsPc.classList.add("hidden");
 
-    loader.classList.remove("hidden");
-    rockPc.classList.add('hidden');
-    paperPc.classList.add('hidden');
-    scissorsPc.classList.add('hidden');
+  rockUser.classList.add("hidden");
+  paperUser.classList.add("hidden");
+  scissorsUser.classList.add("hidden");
+  waitingText.classList.remove("hidden");
 
-    rockUser.classList.add('hidden');
-    paperUser.classList.add('hidden');
-    scissorsUser.classList.add('hidden');
-    waitingText.classList.remove('hidden');
+  scorePlayer = 0;
+  scoreComputer = 0;
+  roundsPlayed = 0;
 
-    scorePlayer = 0;
-    scoreComputer = 0;
-    roundsPlayed = 0;
-
-    userScoreSection.textContent = scorePlayer;
-    computerScoreSection.textContent = scoreComputer;
-    roundsSection.textContent = roundsPlayed;
+  userScoreSection.textContent = scorePlayer;
+  computerScoreSection.textContent = scoreComputer;
+  roundsSection.textContent = roundsPlayed;
 }
 
 //Function where the computer choces a hand and its displayed in the screen
-function computerPlay(){
-    let value = Math.floor(Math.random() * 3);
-    let computerSelection = options[value];
+function computerPlay() {
+  let value = Math.floor(Math.random() * 3);
+  let computerSelection = options[value];
 
-    loader.classList.add("hidden");
-    
-    if(computerSelection == 'rock'){
-        rockPc.classList.remove('hidden');
-        paperPc.classList.add('hidden');
-        scissorsPc.classList.add('hidden');
-    }
-    else if(computerSelection == 'paper'){
-        rockPc.classList.add('hidden');
-        paperPc.classList.remove('hidden');
-        scissorsPc.classList.add('hidden');
-    }
-    else if(computerSelection == 'scissors'){
-        rockPc.classList.add('hidden');
-        paperPc.classList.add('hidden');
-        scissorsPc.classList.remove('hidden');
-    }
-    else{
-        rockPc.classList.add('hidden');
-        paperPc.classList.add('hidden');
-        scissorsPc.classList.add('hidden');
-    }
-    return computerSelection;
+  loader.classList.add("hidden");
+
+  if (computerSelection == "rock") {
+    rockPc.classList.remove("hidden");
+    paperPc.classList.add("hidden");
+    scissorsPc.classList.add("hidden");
+  } else if (computerSelection == "paper") {
+    rockPc.classList.add("hidden");
+    paperPc.classList.remove("hidden");
+    scissorsPc.classList.add("hidden");
+  } else if (computerSelection == "scissors") {
+    rockPc.classList.add("hidden");
+    paperPc.classList.add("hidden");
+    scissorsPc.classList.remove("hidden");
+  } else {
+    rockPc.classList.add("hidden");
+    paperPc.classList.add("hidden");
+    scissorsPc.classList.add("hidden");
+  }
+  return computerSelection;
 }
 
 //Function where both the values of the user and the computer and compared and gives value depending of the result
-function playRound(playerSelection, computerSelection){
-    if(playerSelection == computerSelection){
-        return 0;
-    }
-    else if((playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "scissors" && computerSelection == "paper") ){
-        return 1;
-    }
-    else{
-        return -1; 
-    }
-
+function playRound(playerSelection, computerSelection) {
+  if (playerSelection == computerSelection) {
+    return 0;
+  } else if (
+    (playerSelection == "rock" && computerSelection == "scissors") ||
+    (playerSelection == "paper" && computerSelection == "rock") ||
+    (playerSelection == "scissors" && computerSelection == "paper")
+  ) {
+    return 1;
+  } else {
+    return -1;
+  }
 }
 
 /*******  Event Listeners  ************/
 
-
 //listener for the users options
-playerOptions.forEach( option => {
-    option.addEventListener("click", () => {
-        
-        if (option.className == 'rock') {
-            rockUser.classList.remove('hidden');
-            paperUser.classList.add('hidden');
-            scissorsUser.classList.add('hidden');
-            waitingText.classList.add('hidden');
-            userInput = 'rock';
-        }
-        else if(option.className == 'paper'){
-            rockUser.classList.add('hidden');
-            paperUser.classList.remove('hidden');
-            scissorsUser.classList.add('hidden');
-            waitingText.classList.add('hidden');
-            userInput = 'paper';
-        }
-        else{
-            rockUser.classList.add('hidden');
-            paperUser.classList.add('hidden');
-            scissorsUser.classList.remove('hidden');
-            waitingText.classList.add('hidden');
-            userInput = 'scissors';
-        }
-    })
-})
+playerOptions.forEach((option) => {
+  option.addEventListener("click", () => {
+    if (option.className == "rock") {
+      rockUser.classList.remove("hidden");
+      paperUser.classList.add("hidden");
+      scissorsUser.classList.add("hidden");
+      waitingText.classList.add("hidden");
+      userInput = "rock";
+    } else if (option.className == "paper") {
+      rockUser.classList.add("hidden");
+      paperUser.classList.remove("hidden");
+      scissorsUser.classList.add("hidden");
+      waitingText.classList.add("hidden");
+      userInput = "paper";
+    } else {
+      rockUser.classList.add("hidden");
+      paperUser.classList.add("hidden");
+      scissorsUser.classList.remove("hidden");
+      waitingText.classList.add("hidden");
+      userInput = "scissors";
+    }
+  });
+});
 
 //submit event listener that runs the previous play functions, updates the score values, the round values and shows a pop up with a message
-form.addEventListener('submit', (e) =>{
-    e.preventDefault();
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (userInput !== "") {
     let roundResult = playRound(userInput, computerPlay());
 
-    if(roundResult == 1){
-        scorePlayer++;
-        userScoreSection.textContent = scorePlayer;
-        resultText.textContent = "You WON!";
-        resultText.classList.add("won");
-        resultText.classList.remove("lost");
-        resultText.classList.remove("draw");
-    }
-    else if(roundResult == -1){
-        scoreComputer++
-        computerScoreSection.textContent = scoreComputer;
-        resultText.textContent = "You LOST!";
-        resultText.classList.remove("won");
-        resultText.classList.add("lost");
-        resultText.classList.remove("draw");
-    }
-    else{
-        resultText.textContent = "It's a Draw!";
-        resultText.classList.remove("won");
-        resultText.classList.remove("lost");
-        resultText.classList.add("draw");
+    if (roundResult == 1) {
+      scorePlayer++;
+      userScoreSection.textContent = scorePlayer;
+      resultText.textContent = "You WON!";
+      resultText.classList.add("won");
+      resultText.classList.remove("lost");
+      resultText.classList.remove("draw");
+    } else if (roundResult == -1) {
+      scoreComputer++;
+      computerScoreSection.textContent = scoreComputer;
+      resultText.textContent = "You LOST!";
+      resultText.classList.remove("won");
+      resultText.classList.add("lost");
+      resultText.classList.remove("draw");
+    } else {
+      resultText.textContent = "It's a Draw!";
+      resultText.classList.remove("won");
+      resultText.classList.remove("lost");
+      resultText.classList.add("draw");
     }
 
     roundsPlayed++;
     roundsSection.textContent = roundsPlayed;
 
-    setTimeout(() =>{ resultContainer.classList.remove("hidden"); }, 500);
-
+    setTimeout(() => {
+      closeBtn.innerText = "Next Round";
+      resultContainer.classList.remove("hidden");
+    }, 500);
 
     if (scorePlayer == 5) {
-        resultText.textContent = "You have WON the game";
-        resultText.classList.add("won");
-        resultText.classList.remove("lost");
-        resultText.classList.remove("draw");
-        setTimeout(() => { 
-            resultContainer.classList.remove("hidden"); 
-            returnToDefault();
-        }, 1000);
-        
+      resultText.textContent = "You have WON the game";
+      resultText.classList.add("won");
+      resultText.classList.remove("lost");
+      resultText.classList.remove("draw");
+      setTimeout(() => {
+        closeBtn.innerText = "Play Again!";
+        resultContainer.classList.remove("hidden");
+        returnToDefault();
+      }, 500);
     }
-    if(scoreComputer == 5){
-        resultText.textContent = "You have LOST the game";
-        resultText.classList.remove("won");
-        resultText.classList.add("lost");
-        resultText.classList.remove("draw");
-        setTimeout(() =>{ 
-            resultContainer.classList.remove("hidden"); 
-            returnToDefault();
-        }, 1000);
+    if (scoreComputer == 5) {
+      resultText.textContent = "You have LOST the game";
+      resultText.classList.remove("won");
+      resultText.classList.add("lost");
+      resultText.classList.remove("draw");
+      setTimeout(() => {
+        closeBtn.innerText = "Play Again!";
+        resultContainer.classList.remove("hidden");
+        returnToDefault();
+      }, 500);
     }
-    
+  }
 });
 
 //Listener that call the default function
-restartBtn.addEventListener('click', () =>{
-    returnToDefault();
+restartBtn.addEventListener("click", () => {
+  returnToDefault();
 });
 
 //Listener to close the pop up message
-closeBtn.addEventListener('click', () =>{
-    resultContainer.classList.add("hidden");
+closeBtn.addEventListener("click", () => {
+  resultContainer.classList.add("hidden");
 });
